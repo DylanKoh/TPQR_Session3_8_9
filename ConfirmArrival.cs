@@ -155,7 +155,8 @@ namespace TPQR_Session3_8_9
                             numberCars = int.Parse(lblCar.Text),
                             numberHead = Convert.ToInt32(nudHead.Value),
                             numberDelegate = Convert.ToInt32(nudDelegates.Value),
-                            numberCompetitors = Convert.ToInt32(nudCompetitors.Value)
+                            numberCompetitors = Convert.ToInt32(nudCompetitors.Value),
+                            userIdFK = _user.userId
                         };
                         context.Arrivals.Add(newArrival);
                     }
