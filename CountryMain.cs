@@ -45,5 +45,12 @@ namespace TPQR_Session3_8_9
                 }
             }
         }
+
+        private void btnHotel_Click(object sender, EventArgs e)
+        {
+            Hide();
+            (new HotelSelection(_user)).ShowDialog();
+            Close();
+        }
     }
 }
