@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -43,6 +44,7 @@ namespace TPQR_Session3_8_9
 
         private void btnCreate_Click(object sender, EventArgs e)
         {
+            var regex = new Regex("^[a-zA-Z0-9]+$");
             if (cbCountry.SelectedItem == null || string.IsNullOrWhiteSpace(txtUserID.Text) || string.IsNullOrWhiteSpace(txtPassword.Text) || string.IsNullOrWhiteSpace(txtRePassword.Text))
             {
                 MessageBox.Show("Please ensure all fields are filled!");
@@ -50,6 +52,10 @@ namespace TPQR_Session3_8_9
             else if (txtUserID.TextLength < 8)
             {
                 MessageBox.Show("Please make sure User ID is at least 8 characters long!");
+            }
+            else if (!regex.IsMatch(txtUserID.Text))
+            {
+                MessageBox.Show("Ensure you only have one upper, lower and numeric characters!");
             }
             else if (txtPassword.Text != txtRePassword.Text)
             {

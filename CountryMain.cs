@@ -68,7 +68,31 @@ namespace TPQR_Session3_8_9
                     Close();
                 }
             }
-            
+
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            using (var context = new Session3Entities())
+            {
+                var getArrival = (from x in context.Arrivals
+                                  where x.userIdFK == _user.userId
+                                  select x).FirstOrDefault();
+                var getBooking = (from x in context.Hotel_Booking
+                                  where x.userIdFK == _user.userId
+                                  select x).FirstOrDefault();
+                if (getArrival == null || getBooking == null)
+                {
+                    MessageBox.Show("Please confirm your arrival and booking!");
+
+                }
+                else
+                {
+                    Hide();
+                    (new UpdateInfo(_user)).ShowDialog();
+                    Close();
+                }
+            }
         }
     }
 }
