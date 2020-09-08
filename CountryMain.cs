@@ -48,9 +48,27 @@ namespace TPQR_Session3_8_9
 
         private void btnHotel_Click(object sender, EventArgs e)
         {
-            Hide();
-            (new HotelSelection(_user)).ShowDialog();
-            Close();
+            using (var context = new Session3Entities())
+            {
+                var getArrival = (from x in context.Arrivals
+                                  where x.userIdFK == _user.userId
+                                  select x).FirstOrDefault();
+                var getBooking = (from x in context.Hotel_Booking
+                                  where x.userIdFK == _user.userId
+                                  select x).FirstOrDefault();
+                if (getArrival == null || getBooking != null)
+                {
+                    MessageBox.Show("Ensure that you have confirmed arrival! Else, booking has already been confirmed!");
+
+                }
+                else
+                {
+                    Hide();
+                    (new HotelSelection(_user)).ShowDialog();
+                    Close();
+                }
+            }
+            
         }
     }
 }
