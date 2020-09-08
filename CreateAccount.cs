@@ -20,7 +20,7 @@ namespace TPQR_Session3_8_9
         private void btnBack_Click(object sender, EventArgs e)
         {
             Hide();
-            (new LoginForm()).ShowDialog)();
+            (new LoginForm()).ShowDialog();
             Close();
         }
 
